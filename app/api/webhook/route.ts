@@ -35,9 +35,11 @@ export async function POST(req:Request){
 
   const addressSring = addressComponent.filter((c) => c !== null).join(', ')
 
-  if(event.type === "checkout.session.completed"){
 
-    const order = await prismadb.order.update({
+  if(event.type === "checkout.session.completed"){
+    console.log('HOOK')
+
+    const order = await prismadb.order.updateMany({
       where:{
         id: session?.metadata?.orderId
       },
@@ -47,6 +49,7 @@ export async function POST(req:Request){
         phone:session?.customer_details?.phone || ''
       }
     })
+
 
 
 
