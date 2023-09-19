@@ -39,7 +39,7 @@ export async function POST(req:Request){
   if(event.type === "checkout.session.completed"){
     console.log('HOOK')
 
-    const order = await prismadb.order.updateMany({
+    const order = await prismadb.order.update({
       where:{
         id: session?.metadata?.orderId
       },
